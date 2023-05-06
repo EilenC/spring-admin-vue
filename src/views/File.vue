@@ -6,7 +6,7 @@
             <el-button type="warning" @click="reset">重置</el-button>
         </div>
         <div style="margin: 10px 0">
-            <el-upload action="http://:9090/file/upload" :show-file-list="false" :on-success="handleFileUploadSuccess" style="display: inline-block">
+            <el-upload :action="serverIp +'/file/upload'" :show-file-list="false" :on-success="handleFileUploadSuccess" style="display: inline-block">
                 <el-button type="primary" class="ml-5">上传文件 <i class="el-icon-top"></i></el-button>
             </el-upload>
             <el-popconfirm
@@ -71,6 +71,8 @@
 </template>
 
 <script>
+import {serverIp} from "../../public/config";
+
 export default {
     name: "File",
     data() {
@@ -80,7 +82,8 @@ export default {
             multipleSelection: [],
             pageNum: 1,
             pageSize: 10,
-            total: 0
+            total: 0,
+            serverIp:serverIp,
         }
     },
     created() {
