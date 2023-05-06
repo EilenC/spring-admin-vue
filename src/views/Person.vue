@@ -3,7 +3,7 @@
         <el-form label-width="80px" size="small">
             <el-upload
                     class="avatar-uploader"
-                    :action="'http://' + serverIp +':9090/file/upload'"
+                    :action="serverIp +'/file/upload'"
                     :show-file-list="false"
                     :on-success="handleAvatarSuccess"
             >
@@ -40,7 +40,7 @@ export default {
     name: "Person",
     data() {
         return {
-            serverIp: 'localhost',
+            serverIp: serverIp,
             form: {},
             user: localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")) : {}
         }

@@ -24,7 +24,7 @@
             >
                 <el-button type="danger" slot="reference">批量删除 <i class="el-icon-remove-outline"></i></el-button>
             </el-popconfirm>
-            <el-upload action="http://localhost:9090/user/input" :show-file-list="false" accept="xlsx"
+            <el-upload :action="serverIp +'/user/input'" :show-file-list="false" accept="xlsx"
                        :on-success="handleExcelImportSuccess" style="display: inline-block">
                 <el-button type="primary" class="ml-5">导入 <i class="el-icon-bottom"></i></el-button>
             </el-upload>
@@ -105,6 +105,8 @@
 </template>
 
 <script>
+import {serverIp} from "../../public/config";
+
 export default {
     name: "User",
     data() {
@@ -123,7 +125,8 @@ export default {
             courses: [],
             vis: false,
             stuCourses: [],
-            stuVis: false
+            stuVis: false,
+            serverIp:serverIp,
         }
     },
     created() {
@@ -196,7 +199,7 @@ export default {
             })
         },
         exp() {
-            window.open("http://localhost:9090/user/export")
+            window.open(serverIp+`/user/export`)
         },
         handleExcelImportSuccess() {
             this.$message.success("导入成功")
